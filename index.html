@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aishwarya Sridhar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --bg:#0d0d0d;--bg2:#131313;--bg3:#1a1a1a;--line:#2a2a2a;
+  --text:#e8e4dc;--muted:#7a7570;--muted2:#555;
+  --accent:#c9a96e;--accent2:#6eb5c9;--green:#6ec9a0;--rose:#c96e8a;--violet:#a96ec9;
+  --serif:'Instrument Serif',serif;--sans:'Syne',sans-serif;--r:10px;--r2:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--accent);color:#000}
+a{color:inherit;text-decoration:none}
+
+/* ── CURSOR ── */
+#cursor{
+  width:8px;height:8px;background:var(--accent);border-radius:50%;
+  position:fixed;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);transition:transform .15s,opacity .3s;
+  mix-blend-mode:difference;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.25rem 3rem;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid transparent;transition:all .3s;
+}
+nav.scrolled{background:rgba(13,13,13,.92);backdrop-filter:blur(12px);border-color:var(--line)}
+.nav-logo{font-family:var(--serif);font-size:1.3rem;color:var(--text);letter-spacing:.05em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-burger{display:none;background:none;border:none;color:var(--text);font-size:1.2rem;cursor:pointer}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:grid;place-items:center;
+  padding:6rem 3rem 4rem;position:relative;overflow:hidden;
+}
+.hero-noise{
+  position:absolute;inset:0;pointer-events:none;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+.hero-orb{
+  position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,169,110,.06) 0%,transparent 70%);
+  top:-100px;right:-150px;pointer-events:none;
+  animation:orbFloat 8s ease-in-out infinite alternate;
+}
+@keyframes orbFloat{from{transform:translate(0,0)}to{transform:translate(-30px,40px)}}
+.hero-inner{
+  max-width:920px;width:100%;
+  display:grid;grid-template-columns:1fr 230px;gap:5rem;align-items:center;
+}
+.hero-text .eyebrow{
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;
+}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--accent)}
+.hero-text h1{
+  font-family:var(--serif);font-size:clamp(3.2rem,6.5vw,5.5rem);
+  line-height:1.05;font-weight:400;margin-bottom:1.5rem;letter-spacing:-.01em;
+}
+.hero-text h1 em{font-style:italic;color:var(--accent)}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:2.5rem}
+.hero-desc strong{color:var(--text);font-weight:500}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.chip{
+  padding:.3rem .9rem;border:1px solid var(--line);border-radius:50px;
+  font-size:.73rem;color:var(--muted);letter-spacing:.06em;transition:all .2s;cursor:default;
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.65rem 1.5rem;border-radius:50px;font-size:.82rem;
+  font-family:var(--sans);font-weight:500;letter-spacing:.06em;
+  text-decoration:none;transition:all .25s;cursor:pointer;border:none;
+}
+.btn-gold{background:var(--accent);color:#000}
+.btn-gold:hover{background:#e0bc7a;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-socials{display:flex;gap:.75rem}
+.hero-socials a{
+  width:36px;height:36px;border:1px solid var(--line);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:.8rem;transition:all .2s;
+}
+.hero-socials a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-photo-col{display:flex;flex-direction:column;align-items:center;gap:1.75rem}
+.photo-frame{width:210px;height:210px;position:relative}
+.photo-frame img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  border-radius:40% 60% 55% 45%/50% 45% 55% 50%;border:1px solid var(--line);
+}
+.photo-ring{
+  position:absolute;inset:-8px;border-radius:42% 58% 57% 43%/48% 43% 57% 52%;
+  border:1px solid rgba(201,169,110,.25);
+  animation:ringMorph 6s ease-in-out infinite alternate;
+}
+@keyframes ringMorph{
+  from{border-radius:42% 58% 57% 43%/48% 43% 57% 52%}
+  to{border-radius:58% 42% 43% 57%/52% 57% 43% 48%}
+}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;width:100%}
+.h-stat{
+  text-align:center;padding:.9rem .5rem;
+  border:1px solid var(--line);border-radius:var(--r);
+  transition:border-color .2s;
+}
+.h-stat:hover{border-color:var(--accent)}
+.h-stat .num{font-family:var(--serif);font-size:1.9rem;color:var(--accent);line-height:1}
+.h-stat .lbl{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.25rem}
+
+/* ── SECTIONS ── */
+section{padding:5rem 3rem}
+.container{max-width:920px;margin:0 auto}
+.s-label{
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;
+}
+.s-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+.s-title{
+  font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:400;color:var(--text);margin-bottom:3rem;line-height:1.2;
+}
+.s-title em{color:var(--accent);font-style:italic}
+.divider{border:none;border-top:1px solid var(--line);margin:0}
+
+/* ── ABOUT ── */
+#about .about-body{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-para{color:var(--muted);font-size:.95rem;line-height:1.9;margin-bottom:1.1rem}
+.about-para strong{color:var(--text);font-weight:500}
+.about-para em{color:var(--accent);font-style:italic}
+.fact-grid{display:flex;flex-direction:column;gap:.85rem}
+.fact-row{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1rem;border:1px solid var(--line);border-radius:var(--r);transition:border-color .2s;
+}
+.fact-row:hover{border-color:var(--accent)}
+.fact-icon{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+.fact-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.fact-val{font-size:.9rem;color:var(--text)}
+.values-row{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-top:3rem}
+.val-pill{
+  padding:1.25rem .75rem;border:1px solid var(--line);border-radius:var(--r);
+  text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;
+}
+.val-pill::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,169,110,.08),transparent);opacity:0;transition:opacity .3s;
+}
+.val-pill:hover::before{opacity:1}
+.val-pill:hover{border-color:var(--accent);transform:translateY(-3px)}
+.val-pill .v-icon{font-size:1.5rem;margin-bottom:.5rem}
+.val-pill .v-name{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.val-pill .v-desc{font-size:.78rem;color:var(--muted);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s ease,margin .3s;text-align:left}
+.val-pill:hover .v-desc{max-height:80px;margin-top:.6rem}
+
+/* ── TOOLS MARQUEE ── */
+.tools-section{padding:3rem 0;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tools-track{display:flex;gap:2rem;animation:marquee 30s linear infinite;width:max-content}
+.tools-track:hover{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tool-item{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.5rem 1.25rem;border:1px solid var(--line);border-radius:50px;
+  font-size:.78rem;color:var(--muted);white-space:nowrap;transition:all .2s;cursor:default;flex-shrink:0;
+}
+.tool-item:hover{border-color:var(--accent);color:var(--accent)}
+.tool-item i{font-size:.9rem}
+
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;gap:.75rem}
+.exp-item{border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;transition:border-color .2s}
+.exp-item:hover{border-color:rgba(201,169,110,.4)}
+
+/* THE KEY: button with only inline/flex children, no divs */
+.exp-trigger{
+  width:100%;background:none;border:none;cursor:pointer;
+  padding:1.4rem 1.5rem;display:flex;align-items:center;gap:1.25rem;
+  text-align:left;color:var(--text);font-family:var(--sans);
+}
+.exp-logo{
+  width:44px;height:44px;border-radius:9px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;font-weight:800;letter-spacing:.03em;text-align:center;
+  line-height:1.2;border:1px solid rgba(255,255,255,.08);text-decoration:none;
+}
+.exp-summary{flex:1;text-align:left}
+.exp-role{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
+.exp-company{font-size:.82rem;color:var(--accent)}
+.exp-company a{color:var(--accent)}
+.exp-company a:hover{text-decoration:underline}
+.exp-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.25rem;flex-shrink:0;margin-right:.5rem}
+.exp-date{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.exp-loc{font-size:.7rem;color:var(--muted2)}
+.exp-chev{font-size:.75rem;color:var(--muted);transition:transform .3s;flex-shrink:0}
+.exp-item.open .exp-chev{transform:rotate(180deg);color:var(--accent)}
+
+.exp-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.exp-item.open .exp-body{max-height:600px}
+.exp-inner{padding:0 1.5rem 1.5rem 4.5rem;border-top:1px solid var(--line)}
+.exp-bullets{list-style:none;margin:1rem 0}
+.exp-bullets li{font-size:.85rem;color:var(--muted);padding:.4rem 0;display:flex;gap:.75rem;align-items:flex-start;line-height:1.6}
+.exp-bullets li::before{content:'→';color:var(--accent);flex-shrink:0;font-size:.8rem;margin-top:.1rem}
+.exp-tool-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.exp-tag{padding:.2rem .65rem;border:1px solid var(--line);border-radius:50px;font-size:.7rem;color:var(--muted)}
+
+/* org logo colours */
+.logo-tcp{background:#0a2540;color:#60a5fa}
+.logo-heal{background:#006b5e;color:#6ee7b7}
+.logo-bccdc{background:#003366;color:#7dd3fc;font-size:.5rem}
+.logo-sugar{background:#7c2d12;color:#fed7aa}
+.logo-sahl{background:#005f8e;color:#bae6fd;font-size:.52rem}
+.logo-orebro{background:#2d6a4f;color:#d8f3dc}
+.logo-dyp{background:#7c1d1d;color:#fca5a5}
+.logo-niv{background:#1a3a1a;color:#86efac}
+
+/* ── PORTFOLIO ── */
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.p-card{
+  border:1px solid var(--line);border-radius:var(--r);padding:1.75rem;
+  cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
+}
+.p-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.p-card:hover::after{transform:scaleX(1)}
+.p-card:hover{border-color:rgba(201,169,110,.3);transform:translateY(-3px)}
+.p-card.featured{grid-column:1/-1}
+.p-emoji{font-size:2rem;margin-bottom:1rem}
+.p-cat{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);margin-bottom:.4rem}
+.p-card h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.6rem}
+.p-card p{font-size:.83rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.p-chips{display:flex;flex-wrap:wrap;gap:.3rem}
+.p-chips span{padding:.15rem .55rem;background:var(--bg3);border-radius:4px;font-size:.68rem;color:var(--muted)}
+.p-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--accent);margin-top:.75rem;transition:gap .2s}
+.p-link:hover{gap:.7rem}
+
+/* ── PUBLICATIONS ── */
+.pub-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:2rem}
+.pub-tab-btn{
+  padding:.75rem 1.5rem;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  background:none;border:none;color:var(--muted);cursor:pointer;
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;font-family:var(--sans);
+}
+.pub-tab-btn.active{color:var(--accent);border-color:var(--accent)}
+.pub-pane{display:none}
+.pub-pane.active{display:block}
+.pub-entry{display:flex;gap:1.25rem;padding:1.25rem 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.pub-entry:last-child{border-bottom:none}
+.pub-year{font-family:var(--serif);font-size:1.1rem;color:var(--accent);flex-shrink:0;min-width:42px;padding-top:.1rem}
+.pub-title{font-size:.9rem;font-weight:500;color:var(--text);margin-bottom:.35rem;line-height:1.5}
+.pub-authors{font-size:.78rem;color:var(--muted);margin-bottom:.4rem}
+.pub-badge{display:inline-block;padding:.15rem .6rem;border-radius:50px;font-size:.68rem;background:var(--bg3);color:var(--muted);border:1px solid var(--line)}
+.pub-badge.talk{background:rgba(110,201,160,.08);color:var(--green);border-color:rgba(110,201,160,.2)}
+.pub-badge.award{background:rgba(201,169,110,.08);color:var(--accent);border-color:rgba(201,169,110,.2)}
+
+/* ── EDUCATION ── */
+.edu-accordion{display:flex;flex-direction:column;gap:.75rem}
+.edu-item{border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;transition:border-color .2s}
+.edu-item:hover{border-color:rgba(201,169,110,.3)}
+.edu-trigger{
+  width:100%;background:none;border:none;cursor:pointer;
+  padding:1.4rem 1.5rem;display:flex;align-items:center;gap:1.25rem;
+  text-align:left;color:var(--text);font-family:var(--sans);
+}
+.edu-logo{
+  width:52px;height:52px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;font-weight:800;letter-spacing:.03em;text-align:center;line-height:1.2;
+  border:1px solid rgba(255,255,255,.08);
+}
+.logo-ubc{background:#002145;color:#e8b84b;font-size:.65rem}
+.logo-skovde{background:#1e3a5f;color:#93c5fd}
+.logo-dyp-edu{background:#7c1d1d;color:#fca5a5}
+.edu-main{flex:1;text-align:left}
+.edu-degree{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
+.edu-school{font-size:.82rem;color:var(--accent)}
+.edu-school a{color:var(--accent)}
+.edu-school a:hover{text-decoration:underline}
+.edu-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.edu-item.open .edu-body{max-height:350px}
+.edu-inner{padding:.75rem 1.5rem 1.5rem 5.5rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted);line-height:1.75}
+.edu-note{margin-bottom:.4rem}
+.edu-highlight{
+  display:inline-block;margin-top:.5rem;padding:.2rem .7rem;
+  background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);
+  border-radius:50px;font-size:.72rem;color:var(--accent);
+}
+
+/* ── LANGUAGES ── */
+.lang-section{margin-top:3rem}
+.lang-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+.lang-badge{
+  padding:.35rem .85rem;border:1px solid var(--line);border-radius:50px;
+  font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;
+}
+.lang-badge .native{color:var(--accent)}
+.lang-badge .fluent{color:var(--green)}
+.lang-badge .basic{color:var(--muted2)}
+
+/* ── GIVING BACK / EXTRACURRICULAR ── */
+.giving-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1rem}
+.giving-card{padding:1.25rem;border:1px solid var(--line);border-radius:var(--r);transition:all .25s}
+.giving-card:hover{border-color:rgba(110,201,160,.4);transform:translateY(-2px)}
+.g-icon{font-size:1.4rem;margin-bottom:.6rem}
+.g-title{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+.g-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg2)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-intro{font-size:1rem;color:var(--muted);line-height:1.9;margin-bottom:2rem}
+.contact-intro strong{color:var(--text)}
+.c-links{display:flex;flex-direction:column;gap:.85rem}
+.c-link{
+  display:flex;align-items:center;gap:1rem;font-size:.88rem;color:var(--muted);
+  padding:.75rem;border:1px solid var(--line);border-radius:var(--r);transition:all .2s;
+}
+.c-link:hover{color:var(--accent);border-color:rgba(201,169,110,.3)}
+.c-icon{width:36px;height:36px;background:var(--bg3);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem}
+.contact-form{display:flex;flex-direction:column;gap:.85rem}
+.contact-form input,.contact-form textarea{
+  background:var(--bg3);border:1px solid var(--line);border-radius:8px;
+  padding:.85rem 1rem;color:var(--text);font-family:var(--sans);font-size:.88rem;
+  transition:border-color .2s;resize:vertical;
+}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted)}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent)}
+.form-note{font-size:.75rem;color:var(--muted);text-align:center}
+
+/* ── FOOTER ── */
+footer{
+  padding:2rem 3rem;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer-left{font-size:.78rem;color:var(--muted)}
+.footer-quote{font-family:var(--serif);font-style:italic;font-size:.9rem;color:rgba(201,169,110,.5)}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  section{padding:4rem 1.5rem}
+  .hero{padding:5rem 1.5rem 3rem}
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+  .hero-photo-col{order:-1}
+  .eyebrow,.hero-chips,.hero-actions,.hero-socials{justify-content:center}
+  .hero-desc{margin:0 auto 2.5rem}
+  #about .about-body{grid-template-columns:1fr}
+  .values-row{grid-template-columns:repeat(3,1fr)}
+  .portfolio-grid{grid-template-columns:1fr}
+  .p-card.featured{grid-column:auto}
+  .contact-wrap{grid-template-columns:1fr;gap:2.5rem}
+  .giving-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none;position:fixed;inset:0;top:60px;background:var(--bg);flex-direction:column;padding:2rem;gap:1rem;z-index:99}
+  .nav-links.open{display:flex}
+  .nav-burger{display:block}
+}
+@media(max-width:580px){
+  .values-row{grid-template-columns:1fr 1fr}
+  .giving-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#top">Aishwarya Sridhar</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#portfolio">Projects</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="burger"><i class="fas fa-bars"></i></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-noise"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Vancouver, BC · Open to opportunities</p>
+      <h1>I turn <em>complex science</em> into systems that scale.</h1>
+      <p class="hero-desc">
+        I'm Aishwarya — a <strong>product strategist, bioinformatician, and builder</strong> who finds the same thrill in decoding a genomic dataset as in calling a play on the basketball court. I operate where biology, technology, and human systems intersect.
+      </p>
+      <div class="hero-chips">
+        <span class="chip">Product Management</span>
+        <span class="chip">Healthtech</span>
+        <span class="chip">Bioinformatics</span>
+        <span class="chip">EdTech</span>
+        <span class="chip">Public Health AI</span>
+        <span class="chip">Clinical Strategy</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#about" class="btn btn-gold">Read my story ↓</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://linkedin.com/in/sridhar-aishwarya" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/ASridhar94" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:sridhar.aishwarya@hotmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="hero-photo-col">
+      <div class="photo-frame">
+        <img src="assets/img/profile.jpg" alt="Aishwarya Sridhar"/>
+        <div class="photo-ring"></div>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat"><div class="num">5M+</div><div class="lbl">People reached</div></div>
+        <div class="h-stat"><div class="num">3×</div><div class="lbl">Lead growth</div></div>
+        <div class="h-stat"><div class="num">12+</div><div class="lbl">Publications</div></div>
+        <div class="h-stat"><div class="num">$2M+</div><div class="lbl">Initiatives led</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="s-label">About</p>
+    <h2 class="s-title">From the lab bench to the boardroom — <em>and everywhere between.</em></h2>
+    <div class="about-body">
+      <div class="reveal">
+        <p class="about-para">My career began at the molecular level — elbow-deep in DNA extractions across India, Sweden, and Canada, decoding the genomic logic behind drug resistance and infectious disease. That scientific rigour taught me something irreplaceable: <em>every complex problem has an underlying structure you can decode if you ask the right questions.</em></p>
+        <p class="about-para">But science alone wasn't enough. I wanted to build things that <strong>scale</strong>.</p>
+        <p class="about-para">Today I co-found, lead product, and shape strategy at <strong>Travel CarePlans</strong> and <strong>HEAL Academy</strong> — two ventures reshaping how healthcare professionals learn and how travellers navigate complex health systems. I've launched across 5 international markets, managed $2M+ regulated initiatives, and driven 300% growth in customer acquisition.</p>
+        <p class="about-para">I speak fluently across engineering, clinical, and business teams — <em>translating between worlds is my competitive advantage.</em> Like chess, I see the full board. Like basketball, I move fast and adapt faster.</p>
+      </div>
+      <div class="reveal">
+        <div class="fact-grid">
+          <div class="fact-row"><div class="fact-icon">📍</div><div><div class="fact-label">Based in</div><div class="fact-val">Vancouver, BC · Canadian Citizen</div></div></div>
+          <div class="fact-row"><div class="fact-icon">🧬</div><div><div class="fact-label">Background</div><div class="fact-val">Genomics, AMR, Public Health Research</div></div></div>
+          <div class="fact-row"><div class="fact-icon">♟️</div><div><div class="fact-label">Wired as</div><div class="fact-val">Strategist · Pattern-finder · Builder</div></div></div>
+          <div class="fact-row"><div class="fact-icon">🗣️</div><div><div class="fact-label">Languages</div><div class="fact-val">Tamil · English · Hindi · Marathi · Kannada · Swedish</div></div></div>
+          <div class="fact-row"><div class="fact-icon">🏀</div><div><div class="fact-label">Off the clock</div><div class="fact-val">Basketball captain · Chess · Kabaddi · Dance</div></div></div>
+          <div class="fact-row"><div class="fact-icon">📄</div><div><div class="fact-label">CV</div><div class="fact-val">Available on request</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="values-row reveal">
+      <div class="val-pill"><div class="v-icon">🧠</div><div class="v-name">Curious</div><div class="v-desc">I ask the deeper "why" — always seeking what lies beneath the surface of data, people, and systems.</div></div>
+      <div class="val-pill"><div class="v-icon">🤲</div><div class="v-name">Humble</div><div class="v-desc">The most powerful moments in my career have come from admitting I had more to learn.</div></div>
+      <div class="val-pill"><div class="v-icon">🚦</div><div class="v-name">Clear</div><div class="v-desc">Saying no is a skill. Walking away from misaligned paths has been transformative.</div></div>
+      <div class="val-pill"><div class="v-icon">🚀</div><div class="v-name">Bold</div><div class="v-desc">I step into unfamiliar arenas with full conviction — calculated like a chess opening.</div></div>
+      <div class="val-pill"><div class="v-icon">❤️</div><div class="v-name">Compassionate</div><div class="v-desc">The best systems are built with people, not just for them — including with myself.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS MARQUEE -->
+<div class="tools-section">
+  <div class="tools-track">
+    <div class="tool-item"><i class="fab fa-python" style="color:#3776ab"></i> Python</div>
+    <div class="tool-item"><i class="fas fa-database" style="color:#336791"></i> SQL / PostgreSQL</div>
+    <div class="tool-item"><i class="fab fa-aws" style="color:#ff9900"></i> AWS Bedrock</div>
+    <div class="tool-item"><i class="fab fa-docker" style="color:#2496ed"></i> Docker</div>
+    <div class="tool-item"><i class="fas fa-dna" style="color:#6eb5c9"></i> Nextflow / NGS</div>
+    <div class="tool-item"><i class="fab fa-figma" style="color:#a259ff"></i> Figma</div>
+    <div class="tool-item"><i class="fab fa-jira" style="color:#0052cc"></i> Jira</div>
+    <div class="tool-item"><i class="fas fa-chart-line" style="color:#c96e8a"></i> Mixpanel</div>
+    <div class="tool-item"><i class="fas fa-bullhorn" style="color:#ff7a59"></i> HubSpot</div>
+    <div class="tool-item"><i class="fab fa-git-alt" style="color:#f05032"></i> Git</div>
+    <div class="tool-item"><i class="fas fa-code-branch" style="color:#276dc3"></i> R / Bioconductor</div>
+    <div class="tool-item"><i class="fas fa-layer-group"></i> Notion</div>
+    <div class="tool-item"><i class="fas fa-shield-alt" style="color:#6ec9a0"></i> HIPAA · GDPR</div>
+    <div class="tool-item"><i class="fas fa-brain" style="color:#a96ec9"></i> Pinecone Vector DB</div>
+    <div class="tool-item"><i class="fas fa-chart-bar" style="color:#f2c811"></i> Power BI</div>
+    <div class="tool-item"><i class="fas fa-microscope" style="color:#6eb5c9"></i> Protégé · OWL</div>
+    <!-- duplicate for seamless loop -->
+    <div class="tool-item"><i class="fab fa-python" style="color:#3776ab"></i> Python</div>
+    <div class="tool-item"><i class="fas fa-database" style="color:#336791"></i> SQL / PostgreSQL</div>
+    <div class="tool-item"><i class="fab fa-aws" style="color:#ff9900"></i> AWS Bedrock</div>
+    <div class="tool-item"><i class="fab fa-docker" style="color:#2496ed"></i> Docker</div>
+    <div class="tool-item"><i class="fas fa-dna" style="color:#6eb5c9"></i> Nextflow / NGS</div>
+    <div class="tool-item"><i class="fab fa-figma" style="color:#a259ff"></i> Figma</div>
+    <div class="tool-item"><i class="fab fa-jira" style="color:#0052cc"></i> Jira</div>
+    <div class="tool-item"><i class="fas fa-chart-line" style="color:#c96e8a"></i> Mixpanel</div>
+    <div class="tool-item"><i class="fas fa-bullhorn" style="color:#ff7a59"></i> HubSpot</div>
+    <div class="tool-item"><i class="fab fa-git-alt" style="color:#f05032"></i> Git</div>
+    <div class="tool-item"><i class="fas fa-code-branch" style="color:#276dc3"></i> R / Bioconductor</div>
+    <div class="tool-item"><i class="fas fa-layer-group"></i> Notion</div>
+    <div class="tool-item"><i class="fas fa-shield-alt" style="color:#6ec9a0"></i> HIPAA · GDPR</div>
+    <div class="tool-item"><i class="fas fa-brain" style="color:#a96ec9"></i> Pinecone Vector DB</div>
+    <div class="tool-item"><i class="fas fa-chart-bar" style="color:#f2c811"></i> Power BI</div>
+    <div class="tool-item"><i class="fas fa-microscope" style="color:#6eb5c9"></i> Protégé · OWL</div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="s-label">Work</p>
+    <h2 class="s-title">Where I've <em>built</em> things.</h2>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:2rem;margin-top:-2rem">Click any role to expand ↓</p>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-tcp">TCP</span>
+          <span class="exp-summary">
+            <span class="exp-role">Co-Founder & Head of Product</span>
+            <span class="exp-company" style="display:block"><a href="https://travelcareplans.com/" target="_blank" onclick="event.stopPropagation()">Travel CarePlans</a> · AI Healthcare Platform</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Sept 2024 – Present</span>
+            <span class="exp-loc">Vancouver, BC</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Owned full product lifecycle — vision, user research, PRDs, sprint delivery — for a dual-service AI platform integrating insurance and clinical training for travellers.</li>
+            <li>Translated AI/ML capabilities (AWS Bedrock, Pinecone, NLP) into user-centered features → <strong style="color:var(--text)">30% usability improvement</strong> through iterative prototyping.</li>
+            <li>Managed <strong style="color:var(--text)">$2M+ regulated initiative</strong> with HIPAA, PIPEDA, GDPR, ISO 27001 compliance and 95%+ milestone completion.</li>
+            <li>Partnered with UX designers on wireframes and prototypes, ensuring design consistency with ongoing customer discovery.</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">AWS Bedrock</span><span class="exp-tag">Pinecone</span><span class="exp-tag">NLP</span><span class="exp-tag">Figma</span><span class="exp-tag">Agile/Scrum</span><span class="exp-tag">HIPAA</span><span class="exp-tag">PIPEDA</span><span class="exp-tag">GDPR</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-heal">HEAL</span>
+          <span class="exp-summary">
+            <span class="exp-role">COO & Product Manager – Digital Transformation</span>
+            <span class="exp-company" style="display:block"><a href="https://heal.academy/" target="_blank" onclick="event.stopPropagation()">HEAL Academy</a> · Healthcare EdTech</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Mar 2024 – Present</span>
+            <span class="exp-loc">Vancouver, BC</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Drove product roadmap across <strong style="color:var(--text)">5+ international markets</strong> using RICE and MoSCoW prioritization.</li>
+            <li>Delivered <strong style="color:var(--text)">300% improvement in customer acquisition</strong> and 3× increase in qualified leads within 6 months.</li>
+            <li>Implemented Mixpanel & HubSpot analytics to continuously refine roadmap and optimize user experience.</li>
+            <li>Scaled cross-functional team from 5 to 15+ members; established agile delivery practices and sprint ceremonies.</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">Mixpanel</span><span class="exp-tag">HubSpot</span><span class="exp-tag">Notion</span><span class="exp-tag">Taiga</span><span class="exp-tag">Curriculum Design</span><span class="exp-tag">RICE/MoSCoW</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-bccdc" style="font-size:.48rem">BCCDC<br>/ UBC</span>
+          <span class="exp-summary">
+            <span class="exp-role">Product Lead & PhD Researcher – Bioinformatics</span>
+            <span class="exp-company" style="display:block">BC Centre for Disease Control · University of British Columbia</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">May 2019 – Feb 2024</span>
+            <span class="exp-loc">Vancouver, BC</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Led development of a provincial bioinformatics platform serving <strong style="color:var(--text)">50+ healthcare facilities and 5M+ population.</strong></li>
+            <li>Built automated NGS pipelines (Python, R, Nextflow) processing 2,800+ pathogen genomic datasets at 95%+ accuracy — 40% efficiency improvement.</li>
+            <li>Developed the <strong style="color:var(--text)">Mobile Element Ontology (MOBIO)</strong> — a knowledge framework for bacterial mobile genetic elements, supporting AMR surveillance across BC.</li>
+            <li>Primary liaison between technical teams, clinical directors, and government agencies — translating genomic outputs into actionable public health decisions.</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">Python</span><span class="exp-tag">R</span><span class="exp-tag">Nextflow</span><span class="exp-tag">NGS</span><span class="exp-tag">Protégé</span><span class="exp-tag">Git/HPC</span><span class="exp-tag">SQL</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-sugar">REIGN</span>
+          <span class="exp-summary">
+            <span class="exp-role">Project Manager</span>
+            <span class="exp-company" style="display:block">Sugar Shak · Reign Foundation</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Mar 2024 – Present</span>
+            <span class="exp-loc">New Westminster, BC</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Managed grants, budgeting, vendor contracts, and logistics for a community-first cultural food pop-up — where event planning meets human-centered design.</li>
+            <li>The lesson learned: the best strategy isn't always on a Gantt chart. Agility, presence, and empathy are tools too.</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">Grants Management</span><span class="exp-tag">Budget Planning</span><span class="exp-tag">Community Design</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-sahl">SAHL</span>
+          <span class="exp-summary">
+            <span class="exp-role">Clinical Research Fellow</span>
+            <span class="exp-company" style="display:block">Sahlgrenska Academy, University of Gothenburg</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Jan 2018 – May 2018</span>
+            <span class="exp-loc">Gothenburg, Sweden</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Evaluated antiretroviral treatment effects on NRTIs to study antiviral resistance mechanisms via in-vitro pre-clinical studies on mouse models.</li>
+            <li>Statistical analysis using GraphPad Prism (ANOVA, dose-response, multi-group comparison across cytotoxicity datasets).</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">GraphPad Prism</span><span class="exp-tag">ANOVA</span><span class="exp-tag">Tissue Culture</span><span class="exp-tag">GLP</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-orebro">ÖRU</span>
+          <span class="exp-summary">
+            <span class="exp-role">Research Trainee – ESBL Resistance Genomics</span>
+            <span class="exp-company" style="display:block">Örebro University & Dr. D.Y. Patil Biotechnology Institute</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Jun 2016 – Dec 2017</span>
+            <span class="exp-loc">Örebro, Sweden</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Independent thesis project — conducted genomic, epidemiological and molecular assays to understand resistance trends in environmental bacteria.</li>
+            <li>Evaluated and optimized multiple DNA/RNA extraction techniques for environmental bacterial isolates. Wrote full SOPs for the research workflow.</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">Genomics</span><span class="exp-tag">SPSS</span><span class="exp-tag">AMR</span><span class="exp-tag">SOP Writing</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-dyp">DYP</span>
+          <span class="exp-summary">
+            <span class="exp-role">Research Assistant</span>
+            <span class="exp-company" style="display:block">Dr. D.Y. Patil Biotechnology & Bioinformatics Institute</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Sept 2015 – Jan 2016</span>
+            <span class="exp-loc">Pune, India</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Assisted in designing protocols for projects converting lignocellulosic wastes into biofuels. Published in IJATES (2015).</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">Biofuels</span><span class="exp-tag">Protocol Design</span><span class="exp-tag">Published</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-niv">NIV</span>
+          <span class="exp-summary">
+            <span class="exp-role">Summer Intern – Virology R&D</span>
+            <span class="exp-company" style="display:block">National Institute of Virology</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Summer 2015</span>
+            <span class="exp-loc">Bangalore, India</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Maintained tissue cultures in GLP-regulated lab; worked in vaccines R&D on Japanese Encephalitis and arboviral infections.</li>
+            <li>Synthesized epidemiological data into research papers on climate change impacts on Dengue, Chikungunya, and Japanese Encephalitis.</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">Virology</span><span class="exp-tag">Tissue Culture</span><span class="exp-tag">GLP</span><span class="exp-tag">Epidemiology</span></div>
+        </div></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <button class="exp-trigger" onclick="toggleExp(this)">
+          <span class="exp-logo logo-dyp">DYP</span>
+          <span class="exp-summary">
+            <span class="exp-role">Doctoral Assistant</span>
+            <span class="exp-company" style="display:block">Dr. D.Y. Patil Biotechnology & Bioinformatics Institute</span>
+          </span>
+          <span class="exp-meta">
+            <span class="exp-date">Jul 2014 – Feb 2015</span>
+            <span class="exp-loc">Pune, India</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="exp-body"><div class="exp-inner">
+          <ul class="exp-bullets">
+            <li>Physical, chemical and molecular assessment of Cotton Root Rhizosphere — studying its manipulation and effect on cotton plant growth.</li>
+            <li>Evaluated and optimized DNA extraction techniques from fragile cotton root samples at early growth stage.</li>
+          </ul>
+          <div class="exp-tool-row"><span class="exp-tag">Molecular Biology</span><span class="exp-tag">DNA Extraction</span><span class="exp-tag">Rhizosphere</span></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <p class="s-label">Projects</p>
+    <h2 class="s-title">Things I've <em>built & shipped.</em></h2>
+    <div class="portfolio-grid">
+
+      <div class="p-card featured reveal">
+        <div class="p-emoji">🧬</div>
+        <div class="p-cat" style="color:var(--accent2)">Bioinformatics · Ontology</div>
+        <h3>MOBIO — Mobile Element Ontology</h3>
+        <p>A comprehensive knowledge framework for mobile genetic elements in bacteria — built to power AMR surveillance and outbreak investigations across BC's provincial healthcare network. Still in active use.</p>
+        <div class="p-chips"><span>Protégé</span><span>OWL</span><span>ROBOT</span><span>AMR</span><span>Genomics</span></div>
+      </div>
+
+      <div class="p-card reveal">
+        <div class="p-emoji">🦅</div>
+        <div class="p-cat">Web Tool · NSERC-CREATE</div>
+        <h3>AIV-Seeker Service</h3>
+        <p>Web service for avian influenza genomic subtype analysis — making NGS analysis accessible to non-expert public health labs.</p>
+        <div class="p-chips"><span>NGS</span><span>Python</span><span>Public Health</span></div>
+      </div>
+
+      <div class="p-card reveal">
+        <div class="p-emoji">🛡️</div>
+        <div class="p-cat" style="color:var(--rose)">Public Health · BCCDC</div>
+        <h3>CPO Surveillance Framework</h3>
+        <p>Co-led design of genomic surveillance workflows for Carbapenemase-Producing Organisms. WGS + phylogenetics for real-time outbreak response.</p>
+        <div class="p-chips"><span>WGS</span><span>Phylogenetics</span><span>PICNet</span></div>
+      </div>
+
+      <div class="p-card reveal">
+        <div class="p-emoji">✈️</div>
+        <div class="p-cat" style="color:var(--violet)">AI Product · Co-Founded</div>
+        <h3>Travel CarePlans Platform</h3>
+        <p>Dual-service AI healthcare platform for senior travellers. Defined roadmap, authored user stories, partnered with clinical and engineering teams from 0 → launch across 5 markets.</p>
+        <a href="https://travelcareplans.com/" target="_blank" class="p-link">Visit site →</a>
+        <div class="p-chips"><span>AWS Bedrock</span><span>NLP</span><span>Figma</span></div>
+      </div>
+
+      <div class="p-card featured reveal">
+        <div class="p-emoji">🎓</div>
+        <div class="p-cat" style="color:var(--green)">EdTech · Program Design</div>
+        <h3>HEAL Academy — Healthcare Curriculum</h3>
+        <p>Designed culturally responsive, outcome-based healthcare training for 5+ international markets. AI-integrated, regulatory-aligned, and built to scale. Delivered 300% growth in customer acquisition in 6 months.</p>
+        <a href="https://heal.academy/" target="_blank" class="p-link">Visit site →</a>
+        <div class="p-chips"><span>Curriculum Design</span><span>AI Tools</span><span>5+ Markets</span><span>HIPAA-aligned</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <p class="s-label">Research</p>
+    <h2 class="s-title">Peer-reviewed, presented, <em>published.</em></h2>
+    <div class="pub-tabs">
+      <button class="pub-tab-btn active" onclick="switchTab(this,'pArticles')">Articles</button>
+      <button class="pub-tab-btn" onclick="switchTab(this,'pConf')">Talks & Posters</button>
+    </div>
+    <div class="pub-pane active" id="pArticles">
+      <div class="pub-entry"><div class="pub-year">2024</div><div><div class="pub-title">Applying Fast Healthcare Interoperability Resources (FHIR) for Pathogen Genomics at the Point of Care</div><div class="pub-authors">Kim S, Ritchie G, Mobini M, <strong>Sridhar A</strong>, et al.</div><span class="pub-badge">Preprint 2024</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2023</div><div><div class="pub-title">SARS-CoV-2 Genomic Contextual Data Harmonization: Recommendations from a Mixed Methods Analysis of COVID-19 Case Report Forms Across Canada</div><div class="pub-authors">Cameron R, Savić-Kallesøe S, Griffiths EJ, <strong>Sridhar A</strong>, et al.</div><span class="pub-badge">Preprint 2023</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2019</div><div><div class="pub-title">Molecular profiling of multidrug-resistant river water isolates: insights into resistance mechanism and potential inhibitors</div><div class="pub-authors">Yewale PP, Lokhande KB, <strong>Sridhar A</strong> et al.</div><span class="pub-badge">Environ Sci Pollut Res · 2019</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2017</div><div><div class="pub-title">Molecular Epidemiology of ESBL Producing Proteobacteria Isolated from Mula and Mutha River</div><div class="pub-authors"><strong>Sridhar A</strong></div><span class="pub-badge">MSc Thesis · University of Skövde</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2015</div><div><div class="pub-title">Agricultural and Domestic Refuse as feedstock for Microbial production of Bioethanol</div><div class="pub-authors">Yewale PP, <strong>Sridhar A</strong>, James K, Tandon GD</div><span class="pub-badge">IJATES Vol. 03 · 2015</span></div></div>
+    </div>
+    <div class="pub-pane" id="pConf">
+      <div class="pub-entry"><div class="pub-year">2023</div><div><div class="pub-title">Characterization of Mobile Genetic Elements in Carbapenemase Producing Organisms in British Columbia</div><div class="pub-authors"><strong>Sridhar A</strong>, Fornika D, Russell S, Sutherland D, Kwan C, Zlosnik J, Hsiao W, Hoang L</div><span class="pub-badge talk">🎙 Oral · AMMI Canada-CACMID 2023</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2022</div><div><div class="pub-title">Genomic Analysis of Mobile Genetic Elements in KPC3 Carbapenemase Producing Organisms in BC</div><div class="pub-authors"><strong>Sridhar A</strong>, Fornika D, Ranasinghe R, Hsiao W, Hoang L</div><span class="pub-badge">Poster · ECCMID 2022</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2022</div><div><div class="pub-title">Mobile genetic elements encoding NDM1 conferring carbapenem resistance in BC</div><div class="pub-authors"><strong>Sridhar A</strong>, Hoang L, Hsiao W</div><span class="pub-badge">Poster · BIG Research Day 2022</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2020</div><div><div class="pub-title">AIV-Seeker Service: A Web Service Tool for Influenza Virus Subtype Analysis Based on NGS Data</div><div class="pub-authors"><strong>Sridhar A</strong>, Duan J, Himsworth C, Hsiao W</div><span class="pub-badge">Poster · ASM Conference on Rapid Applied Microbial NGS</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2020</div><div><div class="pub-title">Detailed Genomic Analysis to Investigate a Plasmid-Mediated KPC-3 CPO Outbreak in British Columbia</div><div class="pub-authors"><strong>Sridhar A</strong>, Fornika D, Ranasinghe R, Leung V, et al.</div><span class="pub-badge">Poster · AMR Virtual Conference 2020</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2019</div><div><div class="pub-title">Sequential Screening of High-Risk Patients for CPE Colonization</div><div class="pub-authors">Brodkin E, Short K, <strong>Sridhar A</strong>, Fornika D, Hoang L, Purych D</div><span class="pub-badge">Poster · IDWeek 2019</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2019</div><div><div class="pub-title">Evaluation of genomic tools for predicting relatedness of Serratia marcescens in a BC outbreak</div><div class="pub-authors">Macdonald KA*, Janz L*, <strong>Sridhar A</strong>, et al.</div><span class="pub-badge">Poster · BCCDC Research Symposium 2019</span></div></div>
+      <div class="pub-entry"><div class="pub-year">2017</div><div><div class="pub-title">Molecular typing of ESBL-producing antibiotic resistant bacteria from polluted water reservoirs</div><div class="pub-authors">Yewale PP, <strong>Shridhar A</strong>, Nawani NN, Jass J</div><span class="pub-badge award">🏆 Prize Winner · NGBT Conference 2017</span></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="s-label">Education</p>
+    <h2 class="s-title">Where I <em>learned</em> to think.</h2>
+    <div class="edu-accordion reveal">
+
+      <div class="edu-item">
+        <button class="edu-trigger" onclick="toggleEdu(this)">
+          <span class="edu-logo logo-ubc">UBC</span>
+          <span class="edu-main">
+            <span class="edu-degree" style="display:block">PhD in Bioinformatics</span>
+            <span class="edu-school"><a href="https://www.ubc.ca/" target="_blank" onclick="event.stopPropagation()">University of British Columbia</a> · Vancouver</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="edu-body"><div class="edu-inner">
+          <div class="edu-note">NSERC-CREATE Bioinformatics Scholar · Faculty of Science Graduate Award · Grade: A–</div>
+          <div class="edu-note">Research focus: genomic epidemiology of antimicrobial resistance, mobile genetic elements, and bioinformatics pipeline development for public health. Co-developed MOBIO ontology and AIV-Seeker Service. Collaborated with BCCDC on provincial-scale NGS surveillance serving 5M+ population.</div>
+          <span class="edu-highlight">NSERC-CREATE Scholar</span>
+        </div></div>
+      </div>
+
+      <div class="edu-item">
+        <button class="edu-trigger" onclick="toggleEdu(this)">
+          <span class="edu-logo logo-skovde">HiS</span>
+          <span class="edu-main">
+            <span class="edu-degree" style="display:block">MSc in Molecular Biology</span>
+            <span class="edu-school"><a href="https://www.his.se/en/" target="_blank" onclick="event.stopPropagation()">University of Skövde</a> · Sweden</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="edu-body"><div class="edu-inner">
+          <div class="edu-note">Thesis: <em>Resistance mechanisms in ESBL-producing Enterobacteriaceae isolated from water sources in Pune, India</em> — genomic, epidemiological, and molecular analysis.</div>
+          <div class="edu-note">Coursework: Advanced molecular biology, genomics, microbial genetics, bioinformatics, research methodology. Clinical fellowship at Sahlgrenska Academy, Gothenburg embedded alongside the degree.</div>
+          <span class="edu-highlight">Grade: A</span>
+        </div></div>
+      </div>
+
+      <div class="edu-item">
+        <button class="edu-trigger" onclick="toggleEdu(this)">
+          <span class="edu-logo logo-dyp-edu">DYP</span>
+          <span class="edu-main">
+            <span class="edu-degree" style="display:block">MTech in Biotechnology (Integrated)</span>
+            <span class="edu-school"><a href="https://biotech.dpu.edu.in/" target="_blank" onclick="event.stopPropagation()">Dr. D.Y. Patil Biotechnology & Bioinformatics Institute</a> · Pune</span>
+          </span>
+          <span class="exp-chev"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="edu-body"><div class="edu-inner">
+          <div class="edu-note">Five-year integrated programme spanning molecular biology, bioinformatics, biotechnology, and biochemistry — foundation in both wet-lab and computational biology.</div>
+          <div class="edu-note">Coursework: DNA/RNA technologies, microbiology, immunology, bioinformatics tools, cell biology, enzymology, and bioprocess engineering. Published research on biofuel feedstocks (IJATES, 2015).</div>
+          <div class="edu-note">Internship: National Institute of Virology, Bangalore — vaccines R&D for Japanese Encephalitis and arboviral infections under GLP conditions.</div>
+          <span class="edu-highlight">GPA: 9.2 / 10</span>
+        </div></div>
+      </div>
+
+    </div>
+
+    <!-- Languages -->
+    <div class="lang-section reveal">
+      <p class="s-label" style="margin-bottom:.5rem">Languages</p>
+      <div class="lang-grid">
+        <div class="lang-badge"><span class="native">★</span> Tamil (Native)</div>
+        <div class="lang-badge"><span class="fluent">✓</span> English (Fluent)</div>
+        <div class="lang-badge"><span class="fluent">✓</span> Hindi (Fluent)</div>
+        <div class="lang-badge"><span class="fluent">✓</span> Marathi (Fluent)</div>
+        <div class="lang-badge"><span class="fluent">✓</span> Kannada (Fluent)</div>
+        <div class="lang-badge"><span class="basic">◐</span> Swedish (Basic)</div>
+        <div class="lang-badge"><span class="basic">◐</span> German (Basic)</div>
+        <div class="lang-badge"><span class="basic">◐</span> Sanskrit (Basic)</div>
+      </div>
+    </div>
+
+    <!-- Beyond the Lab -->
+    <div style="margin-top:3.5rem">
+      <p class="s-label" style="margin-bottom:1rem">Beyond the Lab & Boardroom</p>
+      <div class="giving-grid reveal">
+        <div class="giving-card"><div class="g-icon">🏀</div><div class="g-title">Basketball Captain</div><div class="g-desc">Captain 2008–2011. Won awards representing school and college at state level.</div></div>
+        <div class="giving-card"><div class="g-icon">♟️</div><div class="g-title">Chess Strategist</div><div class="g-desc">Pattern recognition and long-game thinking — core to how I approach product and life.</div></div>
+        <div class="giving-card"><div class="g-icon">🥁</div><div class="g-title">Kabaddi Vice-Captain</div><div class="g-desc">Vice Captain 2011–2012. Team sport, tactical play, leading under pressure.</div></div>
+        <div class="giving-card"><div class="g-icon">💃</div><div class="g-title">Dance Competitor</div><div class="g-desc">2 gold + 3 silver at Intercollegiate festivals (2013–2016). Cultural Secretary, KVCME.</div></div>
+        <div class="giving-card"><div class="g-icon">🎭</div><div class="g-title">Dramatics</div><div class="g-desc">Won 2 gold (2012 & 2014). Storytelling on stage sharpened how I communicate off it.</div></div>
+        <div class="giving-card"><div class="g-icon">✍️</div><div class="g-title">Grants Writer, REFood Canada</div><div class="g-desc">Securing funding to address food insecurity through education and community programs.</div></div>
+        <div class="giving-card"><div class="g-icon">📚</div><div class="g-title">BookWallah, SOS Children's Village</div><div class="g-desc">Co-head — enabling library access for underprivileged children worldwide.</div></div>
+        <div class="giving-card"><div class="g-icon">💧</div><div class="g-title">Volunteer, Tahaan</div><div class="g-desc">Supplied water bi-weekly to drought-affected villages across rural India.</div></div>
+        <div class="giving-card"><div class="g-icon">👧</div><div class="g-title">Help a Girl Child</div><div class="g-desc">Team Leader — fundraising for education and livelihood of orphaned young girls.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="s-label">Contact</p>
+    <h2 class="s-title">Let's build something <em>worth building.</em></h2>
+    <div class="contact-wrap">
+      <div>
+        <p class="contact-intro">Whether you're working on <strong>healthtech infrastructure</strong>, building <strong>public health tools</strong>, or need someone who can move fluently between the lab and the boardroom — I'd love to talk.</p>
+        <div class="c-links">
+          <a href="mailto:sridhar.aishwarya@hotmail.com" class="c-link"><div class="c-icon"><i class="fas fa-envelope"></i></div>sridhar.aishwarya@hotmail.com</a>
+          <a href="https://linkedin.com/in/sridhar-aishwarya" target="_blank" class="c-link"><div class="c-icon"><i class="fab fa-linkedin-in"></i></div>linkedin.com/in/sridhar-aishwarya</a>
+          <a href="https://github.com/ASridhar94" target="_blank" class="c-link"><div class="c-icon"><i class="fab fa-github"></i></div>github.com/ASridhar94</a>
+        </div>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/mlgpjepn" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required/>
+        <input type="email" name="email" placeholder="Your Email" required/>
+        <input type="text" name="subject" placeholder="What's this about?"/>
+        <textarea name="message" rows="5" placeholder="Tell me about your project or idea..." required></textarea>
+        <button type="submit" class="btn btn-gold">Send it →</button>
+        <p class="form-note">I typically respond within 48 hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">© 2025 Aishwarya Sridhar · Vancouver, BC</div>
+  <div class="footer-quote">"The person I need to impress most is myself."</div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.addEventListener('mouseenter', () => cursor.style.opacity = 1);
+document.addEventListener('mouseleave', () => cursor.style.opacity = 0);
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile nav
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+// Expand experience — button contains only <span> children, fully valid HTML
+function toggleExp(btn) {
+  const item = btn.closest('.exp-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.exp-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Expand education
+function toggleEdu(btn) {
+  const item = btn.closest('.edu-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.edu-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Publication tabs
+function switchTab(btn, tabId) {
+  document.querySelectorAll('.pub-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.pub-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Stagger child reveals
+document.querySelectorAll('.values-row, .portfolio-grid, .giving-grid').forEach(parent => {
+  parent.querySelectorAll('.val-pill, .p-card, .giving-card').forEach((child, i) => {
+    child.classList.add('reveal');
+    child.style.transitionDelay = (i * 0.07) + 's';
+    observer.observe(child);
+  });
+});
+</script>
+</body>
+</html>
